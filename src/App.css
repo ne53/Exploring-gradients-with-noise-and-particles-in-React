@@ -1,15 +1,12 @@
-.App{
-  filter: brightness(1.3) contrast(1.2);
-}
 
-.StrobeAnimation{
+/* .StrobeAnimation{
   opacity: 0.05;
   z-index: 3;
-}
+} */
 
 .Noise {
   filter: brightness(1);
-  opacity: 0.3;
+  opacity: 0.2;
   mix-blend-mode: luminosity;
   width: 100%;
   height: 100%;
@@ -18,8 +15,9 @@
   left: 0;
   z-index: 2; 
 }
+
 .ParticleCanvas{
-  filter: contrast(1.2) brightness(1.0);
+  filter: contrast(1.2);
   width: 100%;
   height: 100%;
   position: absolute; 
