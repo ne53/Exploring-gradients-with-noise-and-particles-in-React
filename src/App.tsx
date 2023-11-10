@@ -1,7 +1,5 @@
-// import Threejs from './Threejs';
 import Noise from './Noise';
 import ParticleCanvas from './Gradation';
-// import StrobeAnimation  from './StrobeAnimation';
 import { isMobile } from "react-device-detect";
 
 export default function App() {
