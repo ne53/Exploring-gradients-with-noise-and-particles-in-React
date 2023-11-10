@@ -23,5 +23,5 @@
   top: 0;
   left: 0;
   z-index: 1; 
-  filter: blur(8.0rem);
+  filter: blur(10.0rem);
 }
