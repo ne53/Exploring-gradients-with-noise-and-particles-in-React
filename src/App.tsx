@@ -1,18 +1,20 @@
 import Noise from './Noise';
 import ParticleCanvas from './Gradation';
-import { isMobile } from "react-device-detect";
+import { BrowserView, MobileView  } from "react-device-detect";
 
 export default function App() {
   return (
     <>
-      {!isMobile ? (
+      <MobileView>
          <p>Sorry, this app is not available on mobile devices.</p>
-      ) : (
+      </MobileView>
+
+      <BrowserView>
         <div className="App">
           <Noise />
           <ParticleCanvas />
         </div>
-      )}
+      </BrowserView>
     </>
   );
 }
