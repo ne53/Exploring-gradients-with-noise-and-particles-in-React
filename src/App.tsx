@@ -2,17 +2,19 @@
 import Noise from './Noise';
 import ParticleCanvas from './Gradation';
 // import StrobeAnimation  from './StrobeAnimation';
-import { isMobile } from "react-device-detect"
+import { isMobile } from "react-device-detect";
 
 export default function App() {
   return (
-      <div className="App"> 
-       {isMobile ? (
-        <div className="empty"></div>
+    <>
+      {!isMobile ? (
+         <p>Sorry, this app is not available on mobile devices.</p>
       ) : (
-        <Noise />
+        <div className="App">
+          <Noise />
+          <ParticleCanvas />
+        </div>
       )}
-        <ParticleCanvas />
-      </div>
+    </>
   );
 }
