@@ -25,3 +25,18 @@
   z-index: 1; 
   filter: blur(10.0rem);
 }
+
+.App {
+  padding-top: 30vh;
+  color: white;
+  text-align: center;
+  position: relative;
+  font-weight: bold;
+}
+
+.crying-face {
+  width: 20vh;
+  height: 20vh;
+}
+
+
