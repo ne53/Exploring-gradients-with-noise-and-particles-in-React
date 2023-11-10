@@ -57,7 +57,7 @@ const Noise = () => {
       updateCanvasWithRef();
 
       // キャンバスを連続的に更新するためのインターバルを設定
-      const intervalId = setInterval(updateCanvasWithRef, 1000/16);
+      const intervalId = setInterval(updateCanvasWithRef, 1000/8);
 
       // コンポーネントがアンマウントされたときにインターバルをクリア
       return () => {
