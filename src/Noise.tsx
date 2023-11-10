@@ -7,22 +7,19 @@ const Noise: React.FC = () => {
 
   useEffect(() => {
     const sketch = (p: p5) => {
-      const canvasWidth = p.windowWidth;
-      const canvasHeight = p.windowHeight;
-
       const updateCanvas = () => {
-        const data = new Uint32Array(canvasWidth * canvasHeight);
+        const data = new Uint32Array(p.windowHeight * p.windowWidth);
         for (let i = 0; i < data.length; i++) {
           data[i] = p.random(0, 0xFFFFFFFF);
         }
-        const img = new ImageData(new Uint8ClampedArray(data.buffer), canvasWidth, canvasHeight);
-        const ctx  = p.drawingContext as CanvasRenderingContext2D;
+        const img = new ImageData(new Uint8ClampedArray(data.buffer), p.windowWidth, p.windowHeight);
+        const ctx = p.drawingContext as CanvasRenderingContext2D;
         ctx.putImageData(img, 0, 0);
       };
 
       // 初期化
       p.setup = () => {
-        const canvas = p.createCanvas(canvasWidth, canvasHeight);
+        const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
         canvas.parent(canvasRef.current!);
         updateCanvas();
       };
