@@ -15,27 +15,29 @@ type Particle = {
 };
 
 const ParticleCanvas: React.FC = () => {
+  // Reference to the canvas container
   const canvasRef = useRef<HTMLDivElement>(null);
+  // Reference to the current p5 instance
+  const p5InstanceRef = useRef<p5 | null>(null);
 
   useEffect(() => {
+    // p5 sketch function
     const sketch = (p: p5) => {
-      // 設定オブジェクト
+      // Configuration settings
       const config = {
-        count: 30,                  // パーティクルの数
-        minSize: 0.3,               // パーティクルの最小サイズ
-        maxSize: 0.5,               // パーティクルの最大サイズ
-        minSpeed: 0.005,            // パーティクルの最小速度
-        maxSpeed: 0.01,            // パーティクルの最大速度
-        // bgColor: "#000000",         // 背景色
-        // particleColors: ["#FFFFFF", "#000000"],  // パーティクルの色
-        particleColors: ["#F25EA3","#471ED9", "#3B42D9", "#1B8EF2","#F26241"],  // パーティクルの色
-        horizontalScale: 2,         // 横方向のスケール
-        verticalScale: 1,           // 縦方向のスケール
+        count: 30,
+        minSize: 0.3,
+        maxSize: 0.5,
+        minSpeed: 0.005,
+        maxSpeed: 0.01,
+        particleColors: ["#F25EA3", "#471ED9", "#3B42D9", "#1B8EF2", "#F26241"],
+        horizontalScale: 2,
+        verticalScale: 1,
       };
 
       let particles: Particle[] = [];
 
-      // パーティクルを追加する関数
+      // Function to add a new particle
       const addParticle = () => {
         const zDist = p.random() ** 3;
         const randomColor = p.random(config.particleColors);
@@ -50,12 +52,12 @@ const ParticleCanvas: React.FC = () => {
         });
       };
 
-      // 画面外に出たパーティクルを削除する関数
+      // Function to remove particles outside the canvas
       const removeOutOfCanvasParticles = () => {
         particles = particles.filter((particle) => particle.pos.x * p.width - particle.size >= 0);
       };
 
-      // パーティクルの位置を更新する関数
+      // Function to update particle positions
       const updateParticlePositions = () => {
         particles.forEach((particle) => {
           particle.pos.x -= particle.speed;
@@ -68,7 +70,7 @@ const ParticleCanvas: React.FC = () => {
         });
       };
 
-      // パーティクルを描画する関数
+      // Function to draw particles
       const drawParticles = () => {
         particles.forEach((particle) => {
           const yShift = p.map(particle.pos.y, 0, 1, -0.1, 0.1) * p.height;
@@ -85,14 +87,14 @@ const ParticleCanvas: React.FC = () => {
         });
       };
 
-      // 初期化
+      // p5 setup function
       p.setup = () => {
         const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
         canvas.parent(canvasRef.current!);
         p.frameRate(8);
       };
 
-      // 描画
+      // p5 draw function
       p.draw = () => {
         p.push();
         removeOutOfCanvasParticles();
@@ -104,17 +106,29 @@ const ParticleCanvas: React.FC = () => {
         p.pop();
       };
 
-      // ウィンドウのリサイズ
+      // p5 windowResized function
       p.windowResized = () => {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
       };
     };
 
-    // p5 インスタンスの生成
-    new p5(sketch);
+    // Remove previous p5 instance
+    if (p5InstanceRef.current) {
+      p5InstanceRef.current.remove();
+    }
+
+    // Create a new p5 instance
+    p5InstanceRef.current = new p5(sketch);
+
+    // Cleanup when the component unmounts
+    return () => {
+      if (p5InstanceRef.current) {
+        p5InstanceRef.current.remove();
+      }
+    };
   }, []);
 
-  // パーティクルキャンバスの表示
+  // Render the particle canvas container
   return <div ref={canvasRef} className="ParticleCanvas"></div>;
 };
 
