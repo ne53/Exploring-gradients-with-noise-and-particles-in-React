@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import p5 from "p5";
-import "./App.css";
+import "./../App.css";
 
 const Noise: React.FC = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -8,27 +8,27 @@ const Noise: React.FC = () => {
   useEffect(() => {
     const sketch = (p: p5) => {
       const updateCanvas = () => {
-        const data = new Uint32Array(p.windowHeight * p.windowWidth);
+        const w = p.windowWidth * 2;
+        const h = p.windowHeight * 2;
+        const data = new Uint32Array(w * h);
         for (let i = 0; i < data.length; i++) {
           data[i] = p.random(0, 0xFFFFFFFF);
         }
-        const img = new ImageData(new Uint8ClampedArray(data.buffer), p.windowWidth, p.windowHeight);
+        const img = new ImageData(new Uint8ClampedArray(data.buffer), w, h);
         const ctx = p.drawingContext as CanvasRenderingContext2D;
         ctx.putImageData(img, 0, 0);
       };
 
       // 初期化
       p.setup = () => {
-        const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
-        canvas.parent(canvasRef.current!);
-        updateCanvas();
       };
 
       // 描画
       p.draw = () => {
-        setTimeout(() => {
-          updateCanvas();
-        }, 125);
+        const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
+        canvas.parent(canvasRef.current!);
+        p.frameRate(8);
+        updateCanvas();
       };
 
       // ウィンドウのリサイズ

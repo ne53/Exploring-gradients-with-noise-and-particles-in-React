@@ -1,5 +1,5 @@
-import Noise from './Noise';
-import ParticleCanvas from './Gradation';
+import Noise from './components/Noise';
+import ParticleCanvas from './components/Gradation';
 import { BrowserView, MobileView  } from "react-device-detect";
 
 export default function App() {

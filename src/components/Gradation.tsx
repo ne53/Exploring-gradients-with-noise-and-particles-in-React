@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import p5 from "p5";
-import "./App.css";
+import "./../App.css";
 
 type Particle = {
   pos: {
