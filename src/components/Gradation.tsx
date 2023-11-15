@@ -30,7 +30,7 @@ const ParticleCanvas: React.FC = () => {
         // bgColor: "#000000",         // 背景色
         // particleColors: ["#FFFFFF", "#000000"],  // パーティクルの色
         particleColors: ["#F25EA3","#471ED9", "#3B42D9", "#1B8EF2","#F26241"],  // パーティクルの色
-        horizontalScale: 1.5,         // 横方向のスケール
+        horizontalScale: 2,         // 横方向のスケール
         verticalScale: 1,           // 縦方向のスケール
       };
 
