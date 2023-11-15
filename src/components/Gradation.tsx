@@ -22,10 +22,10 @@ const ParticleCanvas: React.FC = () => {
       // 設定オブジェクト
       const config = {
         count: 10,                  // パーティクルの数
-        minSize: 0.3,               // パーティクルの最小サイズ
+        minSize: 0.2,               // パーティクルの最小サイズ
         maxSize: 0.5,               // パーティクルの最大サイズ
         minSpeed: 0.001,            // パーティクルの最小速度
-        maxSpeed: 0.05,            // パーティクルの最大速度
+        maxSpeed: 0.01,            // パーティクルの最大速度
         // bgColor: "#000000",         // 背景色
         // particleColors: ["#FFFFFF", "#000000"],  // パーティクルの色
         particleColors: ["#F25EA3","#471ED9", "#3B42D9", "#1B8EF2","#F26241"],  // パーティクルの色
@@ -89,7 +89,7 @@ const ParticleCanvas: React.FC = () => {
       p.setup = () => {
         const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
         canvas.parent(canvasRef.current!);
-        p.frameRate(30);
+        p.frameRate(60);
       };
 
       // 描画
