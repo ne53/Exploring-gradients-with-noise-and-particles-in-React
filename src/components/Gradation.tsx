@@ -22,7 +22,7 @@ const ParticleCanvas: React.FC = () => {
       // 設定オブジェクト
       const config = {
         count: 10,                  // パーティクルの数
-        minSize: 0.2,               // パーティクルの最小サイズ
+        minSize: 0.3,               // パーティクルの最小サイズ
         maxSize: 0.5,               // パーティクルの最大サイズ
         minSpeed: 0.001,            // パーティクルの最小速度
         maxSpeed: 0.01,            // パーティクルの最大速度
