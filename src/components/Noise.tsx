@@ -44,7 +44,7 @@ const Noise: React.FC = () => {
   }, []);
 
   // キャンバスの表示
-  return <div ref={canvasRef} className="Noise"></div>;
+  return <div ref={canvasRef} className="NoiseCanvas"></div>;
 };
 
 export default Noise;
