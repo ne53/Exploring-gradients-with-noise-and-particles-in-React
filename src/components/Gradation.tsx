@@ -26,7 +26,6 @@ const ParticleCanvas: React.FC = () => {
         maxSize: 0.5,               // パーティクルの最大サイズ
         minSpeed: 0.005,            // パーティクルの最小速度
         maxSpeed: 0.01,            // パーティクルの最大速度
-        bgColor: "#471ED9",         // 背景色
         // bgColor: "#000000",         // 背景色
         // particleColors: ["#FFFFFF", "#000000"],  // パーティクルの色
         particleColors: ["#F25EA3","#471ED9", "#3B42D9", "#1B8EF2","#F26241"],  // パーティクルの色
@@ -96,7 +95,6 @@ const ParticleCanvas: React.FC = () => {
       // 描画
       p.draw = () => {
         p.push();
-        p.background(p.color(config.bgColor));
         removeOutOfCanvasParticles();
         while (particles.length < config.count) {
           addParticle();
